@@ -1,0 +1,136 @@
+body {
+	margin: 0 auto;
+  	text-align: center;
+  	font-family:Arial, Helvetica, sans-serif;
+  	color:#666;
+  	font-size:12px;
+}
+
+header {
+	color:#666;
+}
+
+.logincontainer {
+  margin: 80px auto;
+  width: 640px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.login {
+  position: relative;
+  margin: 0 auto;
+  padding: 0px 20px 20px;
+  width: 310px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login h1 {
+  margin: -20px -20px 21px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  text-shadow: 0 1px white;
+  background: #f3f3f3;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px 3px 0 0;
+  background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+  box-shadow: 0 1px whitesmoke;
+}
+
+.login input[type=text], .login input[type=password], .login input[type=email] {
+  width: 178px;
+}
+
+.login-help {
+  margin: 20px 0;
+  font-size: 11px;
+  color: grey;
+  text-align: center;
+}
+.login-help a {
+  color: black;
+  text-decoration: none;
+}
+.login-help a:hover {
+  text-decoration: underline;
+}
+
+table caption {
+	font-size:24px;
+	padding: 10px;
+}
+
+
+table.center {
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+table {
+	color:#666;
+	font-size:12px;
+	text-shadow: 1px 1px 0px #fff;
+	background:#eaebec;
+	margin:15px;
+	border:#ccc 1px solid;
+	border-radius:3px;
+	box-shadow: 0 1px 2px #d1d1d1;
+}
+table th {
+	padding:18px 22px 19px 22px;
+	border-top:1px solid #fafafa;
+	border-bottom:1px solid #e0e0e0;
+
+	background: #ededed;
+}
+table tr {
+	text-align: center;
+	padding-left:10px;
+}
+table td {
+	padding:14px;
+	border-top: 1px solid #ffffff;
+	border-bottom:1px solid #e0e0e0;
+	border-left: 1px solid #e0e0e0;
+	cursor: pointer;
+	background: #fafafa;
+}
+table tr:hover td {
+	background: #f2f2f2;
+}
+
+table input {
+	cursor: pointer;
+}
+
+
+
+
+input[type=submit], input[type=button]{
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#f9f9f9;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-size:12px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	margin:5px;
+	cursor: pointer;
+}
+input[type=submit]:hover {
+	background-color:#e9e9e9;
+}
+input[type=submit]:active {
+	position:relative;
+	top:1px;
+}
+
+

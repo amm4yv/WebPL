@@ -1,0 +1,8 @@
+1002;1;Robot malfunction;501;open;C3PO doesnt work
+1005;2;Problem with computer;504;open;The computer is flashing
+1008;3;Computer is frozen;502;open;I cant unfreeze the computer
+1009;4;Screen image is on the dark side;503;open;It had no choice
+1011;5;Image has disappeared;502;open;Gone
+1012;6;Delivery problem;501;open;I dont think my deliveries are going through
+1013;4;Electrical problem;NULL;open;I was shocked
+1014;3;Hyperdrive malfunction;NULL;open;It does not work

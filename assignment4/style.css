@@ -1,0 +1,133 @@
+body {
+	margin: 0 auto;
+  	text-align: center;
+  	font-family:Helvetica, sans-serif;
+  	font-size:20px;
+  	color: WHITE;
+  	background: url("img/chalkboard.jpg");
+  	background-size: 100%;
+  	font-weight: lighter;
+}
+
+@font-face {
+    font-family: Chalk;
+    src: url('chalk.ttf');
+}
+
+h1 {
+  font-family: Chalk;
+	letter-spacing: 5px;
+	font-size:100px;
+	font-weight: normal;
+	margin-bottom: 10px;
+	margin-top: 50px;
+}
+
+div#left{
+	margin-left: 100px;
+	float:left;
+  width: 33%;
+}
+div#right{
+	margin-left: 500px;
+	text-align: center;
+}
+div#panel{
+	background: rgba(255,255,255,0.2);
+	padding: 20px;
+}
+
+.correct {
+  color: #00c26f;
+}
+
+.incorrect {
+  color: #ff6b28;
+}
+
+.wordcontainer {
+  margin: 80px auto;
+  width: 640px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+table.wordClass {
+  font-family: Chalk;
+	margin-left:auto; 
+    margin-right:auto;
+    color: WHITE;
+	font-size:50px;
+	border-collapse: separate;
+	border-spacing: 6px 0px;
+}
+
+table tr {
+	text-align: center;
+}
+table td {
+	border-bottom:3px solid #e0e0e0;
+	font-size:48px;
+	width: 70px;
+}
+
+
+input[type=button]{
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#f9f9f9;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-size:24px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	margin:5px;
+	cursor: pointer;
+}
+input[type=button]:hover {
+	background-color:#e9e9e9;
+}
+input[type=button]:active {
+	position:relative;
+	top:1px;
+}
+
+.logincontainer {
+font-family:Arial, Helvetica, sans-serif;
+  margin: 80px auto;
+  width: 640px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.login {
+  position: relative;
+  margin: 0 auto;
+  padding: 0px 20px 20px;
+  width: 310px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 200px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login h1 {
+  margin: -20px -20px 21px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #555;
+  text-align: center;
+  text-shadow: 0 1px white;
+  background: #f3f3f3;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 3px 3px 0 0;
+  background-image: linear-gradient(to bottom, whiteffd, #eef2f5);
+  box-shadow: 0 1px whitesmoke;
+}
+
+.login input[type=text], .login input[type=password], .login input[type=email] {
+  width: 178px;
+}

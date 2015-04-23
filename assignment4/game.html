@@ -1,0 +1,193 @@
+<html>
+<head>
+	<title>Hangman</title>
+	<link type="text/css" rel="stylesheet" href="style.css" media="screen" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function(){	
+			requestWord();
+		});
+
+			var guessedLetters = "";
+			var incorrectGuesses = 0;
+			var word = "";
+			var roundOver = true;
+			var filledIn = 0;
+			var totalRounds = 0;
+			var totalWins = 0;
+			var wordsUsed = new Array();
+			var wordsUsedList = new Array();
+
+			function requestWord(){
+				if (!roundOver){
+					if (!confirm("Are you sure you want to start a new round? (Data from the current round will be lost)")){
+						return false;
+					}
+				}
+				roundOver = true;
+				$.post("process.php", "", function(data){
+	           		var response = $(data).find("value").text();
+	           		//alert(response);
+	           		processWord(response);
+	        	});
+	    	}
+
+	    	function processWord(response){
+	    		for (var i = 0; i < wordsUsed.length; i++) {
+	  				if (response == wordsUsed[i]) {
+	  					requestWord();
+	  					return;
+	  				}
+	  			}
+	  			roundOver = false;
+	  			word = response;
+	  			startNewRound(response);
+	    	}
+
+
+			function startNewRound(word) {
+
+				//guessedLetters = new Array();
+				guessedLetters = "";
+				incorrectGuesses = 0;
+				filledIn = 0;
+
+				$("table#word tr").removeClass("correct");
+				$("img#hangman").attr("src", "img/game.png");
+				$("#word").html("<tr></tr>");
+				$("#guessedLetters").text("Guessed Letters: ");
+				$("#message").text("");
+				$("#numGuessed").text("0");
+				$("#numIncorrect").text("0");
+
+				for(var i = 0; i < word.length; i++) {
+					$("table#word tr").append("<td><p></p></td>");
+				}
+
+				if(wordsUsed.length > 0){
+					var list = "";
+					for(var i = 0; i < wordsUsed.length; i++)
+						list += wordsUsedList[i] + " ";
+					$("#previousWords").html("Previous Words:</br>" + list);
+				}
+
+
+			}
+
+			$(window).on('beforeunload', function(){
+				return "Are you sure you want to start a new round? (All data will be lost)";
+			});
+
+			$(document).keyup(function(event) {
+				if (event.keyCode != 13 && !roundOver){
+					var code = event.which;
+					//Check if character is letter
+					if (code >= 65 && code <= 90){
+						var character = String.fromCharCode(code).toLowerCase();
+						var incorrect = true;
+						//Check if letter has already been guessed
+						if(!inString(guessedLetters, character)){
+							//Add letter to string of guessed letters
+							guessedLetters += character;
+							//Add letter to list shown and update count
+							$("#guessedLetters").append(character);
+							$("#numGuessed").text(guessedLetters.length);
+							//See if letter is correct
+							for(var i = 0; i < word.length; i++) {
+								var c = word.charAt(i);
+								if(character == c){
+									$("table#word tr td:eq(" + i + ")").append(character);
+									incorrect = false;
+									filledIn++;
+								}
+
+							}
+							//Round over
+							if (filledIn == word.length) {
+								roundOver = true;
+								totalRounds++;
+								totalWins++;
+								updateMessage(true);
+								return;
+							}
+
+							if (incorrect){
+								$("#message").text("Incorrect!");
+								incorrectGuesses++;
+								$("img#hangman").attr("src", "img/game" + incorrectGuesses + ".png");
+								$("#numIncorrect").text(incorrectGuesses);
+								if(incorrectGuesses == 7){
+									roundOver = true;
+									totalRounds++;
+									updateMessage(false);
+								}
+							} 
+							else {
+								$("#message").text("Correct!");
+							}
+						}
+						else {
+							$("#message").text("Letter has already been guessed. Try again!");
+						}
+					}
+				}
+			});
+
+			function updateMessage(correct){
+				var wins = Math.round((totalWins / totalRounds) * 100);
+				wordsUsed.push(word);
+				if(correct){
+					$('#stats').html("Total rounds played: " + totalRounds + "<br/>Total rounds won: " + totalWins + "<br/>Win percentage: " + wins + "%");
+					$("#message").html("Round over - you win! You guessed the word.");
+					$("table#word tr").addClass("correct");
+					wordsUsedList.push("<span class='correct' style='padding-right:1em'>" + word + "</span>");
+				}
+				else{
+					$('#stats').html("Total rounds played: " + totalRounds + "<br/>Total rounds won: " + totalWins + "<br/>Win percentage: " + wins + "%");
+					$("#message").html("Round over - you lose! You used all 7 guesses. <br/>The word was <span class='correct'>" + word + "</span>");
+					wordsUsedList.push("<span style='padding-right:1em'>" + word + "</span>");
+				}
+
+			}
+
+
+			function inString(word, c){
+				for(var i = 0; i < word.length; i++) {
+					if(c == word.charAt(i)){
+						return true;
+					}
+				}
+				return false;
+			}
+	
+
+
+	</script>
+</head>
+<body>
+	<br/>
+	<div id="left">
+	<h1>Hangman</h1>
+	<div id="panel">
+	<input type='button' value='Start a New Round' onclick='requestWord()'>
+		<p>Number of letters guessed: <span id="numGuessed">0</span>
+		<br/>Number of incorrect guesses: <span id="numIncorrect" class="incorrect">0</span></p>
+		<p id="guessedLetters">Guessed Letters: </p>
+		<p id="stats"></p>
+	</div>
+	<p id="previousWords" style="text-align:left; font-size:16;"></p>
+</div>
+<div id="right">
+	<img id="hangman" src="img/game.png">
+	<div class="wordcontainer">
+		
+		<table id="word" class="wordClass"><tr></tr></table>
+		<p id="message"></p>
+		
+	</div>
+</div>
+
+</body>
+</html>
+
