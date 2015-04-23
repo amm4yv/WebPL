@@ -1,0 +1,3 @@
+quiz1.txt#4#9#31#5
+quiz2.txt#5#5#18#7
+quiz3.txt#4#2#6#2
